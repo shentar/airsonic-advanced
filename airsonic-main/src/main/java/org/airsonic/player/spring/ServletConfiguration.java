@@ -23,7 +23,6 @@ import org.springframework.web.servlet.view.JstlView;
 
 import javax.servlet.Filter;
 import javax.servlet.Servlet;
-
 import java.util.Properties;
 
 @Configuration
@@ -95,7 +94,7 @@ public class ServletConfiguration implements WebMvcConfigurer {
     @Bean
     public FilterRegistrationBean<Filter> cacheFilterRegistration() {
         FilterRegistrationBean<Filter> registration = new FilterRegistrationBean<>(cacheFilter());
-        registration.addUrlPatterns("/icons/*", "/style/*", "/script/*", "/icons/*", "/coverArt.view", "/avatar.view");
+        registration.addUrlPatterns("/icons/*", "/style/*", "/script/*", "/icons/*", "/avatar.view");
         registration.addInitParameter("Cache-Control", "max-age=36000");
         registration.setName("CacheFilter");
         registration.setOrder(5);
@@ -110,7 +109,8 @@ public class ServletConfiguration implements WebMvcConfigurer {
     @Bean
     public FilterRegistrationBean<Filter> noCacheFilterRegistration() {
         FilterRegistrationBean<Filter> registration = new FilterRegistrationBean<>(noCacheFilter());
-        registration.addUrlPatterns("/statusChart.view", "/userChart.view", "/playQueue.view", "/podcastChannels.view", "/podcastChannel.view", "/help.view", "/top.view", "/home.view");
+        registration.addUrlPatterns("/coverArt.view", "/statusChart.view", "/userChart.view", "/playQueue.view",
+                "/podcastChannels.view", "/podcastChannel.view", "/help.view", "/top.view", "/home.view");
         registration.addInitParameter("Cache-Control", "no-cache, post-check=0, pre-check=0");
         registration.addInitParameter("Pragma", "no-cache");
         registration.addInitParameter("Expires", "Thu, 01 Dec 1994 16:00:00 GMT");
